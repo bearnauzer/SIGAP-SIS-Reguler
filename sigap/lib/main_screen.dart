@@ -13,11 +13,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  // Ini dia 3 layar yang akan bergantian muncul
   final List<Widget> _pages = [
-    const HomeScreen(),           
+    const BerandaScreen(),           
     const DetailStatusScreen(),   
-    const BantuScreens(),         
+    const BantuScreen(),         
   ];
 
   void _onItemTapped(int index) {

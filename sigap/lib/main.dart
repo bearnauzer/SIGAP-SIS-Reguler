@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'main_screen.dart'; // Import MainScreen yang sejajar
+import 'package:flutter/foundation.dart';
+import 'package:device_preview/device_preview.dart';
+import 'main_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,12 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SIGAP',
       debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      title: 'SIGAP',
       theme: ThemeData(
-        fontFamily: 'Roboto',
+        scaffoldBackgroundColor: const Color(0xFF0F172A),
       ),
-      home: const MainScreen(), // Panggil MainScreen di sini
+      home: const MainScreen(),
     );
   }
 }
